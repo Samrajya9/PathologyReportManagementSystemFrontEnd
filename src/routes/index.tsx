@@ -1,9 +1,14 @@
+import AdminLayout from "@/components/layouts/AdminLayout";
 import Dashboard from "@/pages/Admin/Dashboard";
 import NotFound from "@/pages/NotFound";
 import type { RouteObject } from "react-router";
 
 const routes: RouteObject[] = [
-  { path: "/", element: <Dashboard /> },
+  {
+    path: "admin",
+    element: <AdminLayout />,
+    children: [{ path: "dashboard", element: <Dashboard /> }],
+  },
   { path: "*", element: <NotFound /> },
 ];
 

@@ -17,8 +17,7 @@ export function AppSidebar() {
   return (
     <aside
       className={cn(
-        "bg-sidebar-background text-sidebar-foreground relative transition-all duration-300 ease-in-out flex flex-col border-r",
-        "border-sidebar-border",
+        "text-sidebar-foreground relative transition-all duration-300 ease-in-out flex flex-col ",
         isCollapsed ? "w-16" : "w-64"
       )}
     >
@@ -29,7 +28,8 @@ export function AppSidebar() {
             isCollapsed ? "opacity-0" : "opacity-100"
           )}
         >
-          System
+          {navigationItems.find((item) => location.pathname === item.url)
+            ?.title ?? "Menu"}
         </h2>
 
         <Button
@@ -37,7 +37,7 @@ export function AppSidebar() {
           size="icon"
           onClick={onToggle}
           className={cn(
-            "text-accent h-8 w-8 absolute transition-all duration-300",
+            " h-8 w-8 absolute transition-all duration-300 text-sidebar-foreground",
             isCollapsed ? "left-1/2 -translate-x-1/2" : "right-2"
           )}
         >
