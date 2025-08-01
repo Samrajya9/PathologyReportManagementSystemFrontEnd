@@ -7,7 +7,10 @@ const routes: RouteObject[] = [
   {
     path: "admin",
     element: <AdminLayout />,
-    children: [{ path: "dashboard", element: <Dashboard /> }],
+    children: [
+      { path: "dashboard", element: <Dashboard /> },
+      { path: "reports/financial", element: <Dashboard /> },
+    ],
   },
   { path: "*", element: <NotFound /> },
 ];
