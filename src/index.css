@@ -30,12 +30,8 @@
   --input: oklch(0.91 0.021 255);
   --ring: oklch(0.61 0.2 251);
 
-  /* --sidebar-background: oklch(0.18 0.017 255);
-  --sidebar-foreground: oklch(0.96 0.006 255); */
-
   --sidebar-background: oklch(0.98 0.002 247);
   --sidebar-foreground: oklch(0.18 0.017 255);
-
   --sidebar-primary: oklch(0.61 0.2 251);
   --sidebar-primary-foreground: oklch(1 0 0);
   --sidebar-accent: oklch(0.25 0.015 255);
