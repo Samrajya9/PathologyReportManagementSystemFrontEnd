@@ -1,5 +1,4 @@
 import {
-  Home,
   Settings,
   FileText,
   BarChart3,
@@ -12,9 +11,7 @@ import {
   Activity,
   UserCheck,
   UserPlus,
-  Calendar,
   CreditCard as Card,
-  Receipt,
 } from "lucide-react";
 
 export const NAV_PATHS = {
@@ -39,6 +36,9 @@ export const NAV_PATHS = {
   billingHistory: "/billing/history",
   // Settings
   settings: "/settings",
+
+  department: "/admin/department",
+  departmentCreate: "/admin/department/create",
 };
 
 export interface MenuItem {
@@ -49,7 +49,6 @@ export interface MenuItem {
 }
 
 export const menuItems: MenuItem[] = [
-  { icon: Home, label: "Home", url: NAV_PATHS.home },
   { icon: BarChart3, label: "Dashboard", url: NAV_PATHS.dashboard },
   {
     icon: FileText,
@@ -97,18 +96,13 @@ export const menuItems: MenuItem[] = [
       { icon: Mail, label: "Messages", url: NAV_PATHS.messages },
     ],
   },
+
   {
     icon: CreditCard,
-    label: "Billing",
+    label: "Department",
     url: "#",
     children: [
-      { icon: Card, label: "Payment Methods", url: NAV_PATHS.paymentMethods },
-      { icon: Receipt, label: "Invoices", url: NAV_PATHS.invoices },
-      {
-        icon: Calendar,
-        label: "Billing History",
-        url: NAV_PATHS.billingHistory,
-      },
+      { icon: Card, label: "Create", url: NAV_PATHS.departmentCreate },
     ],
   },
   { icon: Settings, label: "Settings", url: NAV_PATHS.settings },

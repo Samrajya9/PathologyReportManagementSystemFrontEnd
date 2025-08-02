@@ -80,7 +80,7 @@ interface NavItemProps {
 }
 
 const NavItem = ({ item, isCollapsed, location, depth }: NavItemProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
   const Icon = item.icon;
   const hasChildren = item.children && item.children.length > 0;
   const isActive =
