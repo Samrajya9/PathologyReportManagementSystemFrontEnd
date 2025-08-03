@@ -59,7 +59,7 @@ export function AppSidebar({ className }: AppSidebarProps) {
         <nav className="grid gap-1 px-2">
           {menuItems.map((item) => (
             <NavItem
-              key={item.url}
+              key={item.label}
               item={item}
               isCollapsed={isCollapsed}
               location={location}

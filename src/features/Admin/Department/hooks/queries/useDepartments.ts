@@ -1,11 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
 import departmentQueryKeys from "../../constants/department.queryKeys";
 import departmentClient from "../../api/department.api";
+import type { DepartmentResponse } from "../../types/department.types";
+import { useSuspenseQuery } from "@tanstack/react-query";
 
 const useDepartments = () => {
-  return useQuery({
+  return useSuspenseQuery({
     queryKey: departmentQueryKeys.all,
-    queryFn: () => departmentClient.get(),
+    queryFn: () => departmentClient.get<DepartmentResponse>(),
   });
 };
 

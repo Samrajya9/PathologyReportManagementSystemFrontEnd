@@ -4,6 +4,7 @@ import useCreateDepartment from "@/features/Admin/Department/hooks/mutations/use
 import useDepartmentForm from "@/features/Admin/Department/hooks/useDepartmentForm";
 import type { TDepartmentForm } from "@/features/Admin/Department/types/departmentForm.types";
 import { FormProvider, type SubmitHandler } from "react-hook-form";
+import toast from "react-hot-toast";
 
 const CreateDepartment = () => {
   const methods = useDepartmentForm();
@@ -13,10 +14,18 @@ const CreateDepartment = () => {
 
   const onSubmit: SubmitHandler<TDepartmentForm> = async (data) => {
     try {
-      console.log(data);
       await mutateAsync(data);
-      reset();
-    } catch (error) {}
+      toast.success("Department created successfully!");
+      reset(); // Reset form after successful creation
+    } catch (error) {
+      console.error("Error creating department:", error);
+      // if (isAxiosError(error)) {
+      //   const message = error.response?.data.message;
+      //   console.error("Axios Error:", error.response?.data.message);
+      //   toast.error(message);
+      // }
+      toast.error("Failed to create department");
+    }
   };
 
   return (
