@@ -14,7 +14,9 @@ interface UseDepartmentFormProps {
   initialValue?: TDepartmentForm;
 }
 
-const useDepartmentForm = ({ initialValue }: UseDepartmentFormProps = {}) => {
+export const useDepartmentForm = ({
+  initialValue,
+}: UseDepartmentFormProps = {}) => {
   const methods = useForm<TDepartmentForm>({
     defaultValues: initialValue || defaultValue,
     resolver: zodResolver(departmentFormSchema),
@@ -22,5 +24,3 @@ const useDepartmentForm = ({ initialValue }: UseDepartmentFormProps = {}) => {
 
   return methods;
 };
-
-export default useDepartmentForm;

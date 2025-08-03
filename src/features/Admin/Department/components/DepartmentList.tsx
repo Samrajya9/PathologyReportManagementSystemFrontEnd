@@ -7,30 +7,63 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import {
-  Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import useDepartments from "../hooks/queries/useDepartments";
 import { useState } from "react";
 import type { Department } from "../types/department.types";
 import EditDepartment from "./EditDepartment";
+import { SquarePen, Trash } from "lucide-react";
+import Modal from "@/components/Modal";
+import DeleteDepartment from "./DeleteDepartment";
+import useDepartments from "../hooks/queries/useDepartments";
 
 const DepartmentList = () => {
   const { data } = useDepartments();
-  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedAction, setSelectedAction] = useState<
+    "Update" | "Delete" | null
+  >(null);
 
   const [selectedDepartment, setSelectedDepartment] =
     useState<Department | null>(null);
 
   const handleOnEditClick = (department: Department) => {
+    setSelectedAction("Update");
     setSelectedDepartment(department);
-    setOpen(true);
+    setIsOpen(true);
   };
-
+  const handleOnDeleteClick = (department: Department) => {
+    setSelectedAction("Delete");
+    setSelectedDepartment(department);
+    setIsOpen(true);
+  };
   return (
     <>
+      <Modal open={isOpen} setOpen={setIsOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>
+              {selectedAction === "Update"
+                ? "Edit Department"
+                : "Delete Department"}
+            </DialogTitle>
+          </DialogHeader>
+          {selectedDepartment &&
+            (selectedAction === "Update" ? (
+              <EditDepartment
+                data={selectedDepartment}
+                onSuccess={() => setIsOpen(false)}
+              />
+            ) : (
+              <DeleteDepartment
+                data={selectedDepartment}
+                onSuccess={() => setIsOpen(false)}
+              />
+            ))}
+        </DialogContent>
+      </Modal>
       <Table>
         <TableHeader>
           <TableRow>
@@ -47,36 +80,24 @@ const DepartmentList = () => {
               <TableCell className="font-medium">{row.name}</TableCell>
               <TableCell>{row.description}</TableCell>
               <TableCell>
-                <div className="flex justify-between items-center">
-                  <p
+                <div className="flex gap-4 items-center">
+                  <SquarePen
                     onClick={() => handleOnEditClick(row)}
+                    size={16}
                     className="text-blue-600 hover:underline cursor-pointer"
-                  >
-                    Edit
-                  </p>
-                  <p className="text-red-600 hover:underline cursor-pointer">
-                    Delete
-                  </p>
+                  />
+
+                  <Trash
+                    size={16}
+                    className="text-red-600 hover:underline cursor-pointer"
+                    onClick={() => handleOnDeleteClick(row)}
+                  />
                 </div>
               </TableCell>
             </TableRow>
           ))}
         </TableBody>
       </Table>
-
-      <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Edit Department</DialogTitle>
-          </DialogHeader>
-          {selectedDepartment && (
-            <EditDepartment
-              data={selectedDepartment}
-              onSuccess={() => setOpen(false)} // 👈 close modal
-            />
-          )}
-        </DialogContent>
-      </Dialog>
     </>
   );
 };

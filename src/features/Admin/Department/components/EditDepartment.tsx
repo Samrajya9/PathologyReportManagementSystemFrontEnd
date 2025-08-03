@@ -1,13 +1,12 @@
 import type React from "react";
 
-import useDepartmentForm from "../hooks/useDepartmentForm";
 import type { Department } from "../types/department.types";
 import { FormProvider, type SubmitHandler } from "react-hook-form";
 import type { TDepartmentForm } from "../types/departmentForm.types";
 import DepartmentForm from "./DepartmentForm";
 import { Button } from "@/components/ui/button";
-import useUpdateDepartment from "../hooks/mutations/useUpdateDepartment";
 import toast from "react-hot-toast";
+import { useDepartmentForm, useUpdateDepartment } from "../hooks";
 
 interface EditDepartmentProps {
   data: Department;

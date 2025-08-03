@@ -60,10 +60,10 @@ class HttpClient {
   }
 
   async delete<TResponse>(
-    path: string = "", // Made optional for consistency
+    path: string = "",
     config?: AxiosRequestConfig
   ): Promise<TResponse> {
-    const response = await axiosInstance.delete(this.baseUrl + path, config);
+    const response = await axiosInstance.delete(this.buildUrl(path), config);
     return response.data;
   }
 }

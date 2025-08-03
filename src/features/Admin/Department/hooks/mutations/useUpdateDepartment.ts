@@ -1,3 +1,4 @@
+//src/features/Admin/Department/hooks/mutations/useUpdateDepartment.ts
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import departmentClient from "../../api/department.api";
 import type { TDepartmentForm } from "../../types/departmentForm.types";
@@ -8,7 +9,7 @@ interface UpdateDepartmentInput {
   id: string;
   data: TDepartmentForm;
 }
-const useUpdateDepartment = () => {
+export const useUpdateDepartment = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -19,5 +20,3 @@ const useUpdateDepartment = () => {
     },
   });
 };
-
-export default useUpdateDepartment;

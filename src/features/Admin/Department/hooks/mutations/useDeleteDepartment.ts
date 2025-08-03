@@ -1,14 +1,13 @@
-//src/features/Admin/Department/hooks/mutations/useCreateDepartment.ts
+//src/features/Admin/Department/hooks/mutations/useDeleteDepartment.ts
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import departmentClient from "../../api/department.api";
 import departmentQueryKeys from "../../constants/department.queryKeys";
-import type { TDepartmentForm } from "../../types";
 
-export const useCreateDepartment = () => {
+export const useDeleteDepartment = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (data: TDepartmentForm) => departmentClient.post("", data),
+    mutationFn: (id: string) => departmentClient.delete(id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: departmentQueryKeys.all });
     },
