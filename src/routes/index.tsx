@@ -3,12 +3,14 @@ import Dashboard from "@/pages/Admin/Dashboard";
 import NotFound from "@/pages/NotFound";
 import type { RouteObject } from "react-router";
 import { lazy, Suspense } from "react";
+import Container from "@/pages/Admin/Container";
+import CreateContainer from "@/pages/Admin/Container/create";
 
 const CreateDepartment = lazy(() => import("@/pages/Admin/Department/create"));
 
 const Department = lazy(() => import("@/pages/Admin/Department"));
 
-const routes: RouteObject[] = [
+export const routes: RouteObject[] = [
   {
     path: "admin",
     element: (
@@ -27,9 +29,15 @@ const routes: RouteObject[] = [
         path: "department/create",
         element: <CreateDepartment />,
       },
+      {
+        path: "container",
+        element: <Container />,
+      },
+      {
+        path: "container/create",
+        element: <CreateContainer />,
+      },
     ],
   },
   { path: "*", element: <NotFound /> },
 ];
-
-export default routes;

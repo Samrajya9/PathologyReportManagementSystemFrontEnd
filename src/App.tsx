@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createBrowserRouter, RouterProvider } from "react-router";
-import routes from "./routes";
+import { routes } from "./routes";
 import { Toaster } from "react-hot-toast";
 import { Suspense } from "react";
 

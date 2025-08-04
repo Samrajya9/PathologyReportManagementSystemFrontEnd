@@ -6,38 +6,38 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useContainers } from "../hooks/queries/useContainers";
+import { SquarePen, Trash } from "lucide-react";
+import { useState } from "react";
+import type { Container } from "../types/ContainerResponse";
+
+import Modal from "@/components/Modal";
 import {
   DialogContent,
   DialogHeader,
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { useState } from "react";
-import type { Department } from "../types/department.types";
-import EditDepartment from "./EditDepartment";
-import { SquarePen, Trash } from "lucide-react";
-import Modal from "@/components/Modal";
-import DeleteDepartment from "./DeleteDepartment";
-import useDepartments from "../hooks/queries/useDepartments";
+import EditContainer from "./EditContainer";
+import DeleteContainer from "./DeleteContainer";
 
-const DepartmentList = () => {
-  const { data } = useDepartments();
+const ContainerList = () => {
+  const { data } = useContainers();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedAction, setSelectedAction] = useState<
     "Update" | "Delete" | null
   >(null);
 
-  const [selectedDepartment, setSelectedDepartment] =
-    useState<Department | null>(null);
+  const [selectedData, setSelectedData] = useState<Container | null>(null);
 
-  const handleOnEditClick = (department: Department) => {
+  const handleOnEditClick = (data: Container) => {
     setSelectedAction("Update");
-    setSelectedDepartment(department);
+    setSelectedData(data);
     setIsOpen(true);
   };
-  const handleOnDeleteClick = (department: Department) => {
+  const handleOnDeleteClick = (data: Container) => {
     setSelectedAction("Delete");
-    setSelectedDepartment(department);
+    setSelectedData(data);
     setIsOpen(true);
   };
   return (
@@ -52,15 +52,15 @@ const DepartmentList = () => {
             </DialogTitle>
             <DialogDescription></DialogDescription>
           </DialogHeader>
-          {selectedDepartment &&
+          {selectedData &&
             (selectedAction === "Update" ? (
-              <EditDepartment
-                data={selectedDepartment}
+              <EditContainer
+                data={selectedData}
                 onSuccess={() => setIsOpen(false)}
               />
             ) : (
-              <DeleteDepartment
-                data={selectedDepartment}
+              <DeleteContainer
+                data={selectedData}
                 onSuccess={() => setIsOpen(false)}
               />
             ))}
@@ -71,8 +71,7 @@ const DepartmentList = () => {
           <TableRow>
             <TableHead>Id</TableHead>
             <TableHead>Name</TableHead>
-            <TableHead>Description</TableHead>
-            <TableHead className="">Action</TableHead>
+            <TableHead className="text-right">Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -80,9 +79,8 @@ const DepartmentList = () => {
             <TableRow key={row.id}>
               <TableCell>{row.id}</TableCell>
               <TableCell className="font-medium">{row.name}</TableCell>
-              <TableCell>{row.description}</TableCell>
               <TableCell>
-                <div className="flex gap-4 items-center">
+                <div className="flex gap-4 items-center justify-end">
                   <SquarePen
                     onClick={() => handleOnEditClick(row)}
                     size={16}
@@ -104,4 +102,4 @@ const DepartmentList = () => {
   );
 };
 
-export default DepartmentList;
+export default ContainerList;

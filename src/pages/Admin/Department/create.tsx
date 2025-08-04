@@ -5,7 +5,6 @@ import {
   useDepartmentForm,
 } from "@/features/Admin/Department/hooks";
 import type { TDepartmentForm } from "@/features/Admin/Department/types";
-
 import { FormProvider, type SubmitHandler } from "react-hook-form";
 import toast from "react-hot-toast";
 
