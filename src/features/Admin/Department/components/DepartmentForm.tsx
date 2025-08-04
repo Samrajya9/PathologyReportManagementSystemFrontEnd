@@ -9,8 +9,13 @@ const DepartmentForm = () => {
 
   return (
     <div className="flex flex-col gap-4">
-      <Input {...register("name")} />
-      <Textarea {...register("description")} />
+      <Input id="name" {...register("name")} label="Name" />
+
+      <Textarea
+        id="description"
+        {...register("description")}
+        label="Description"
+      />
     </div>
   );
 };

@@ -18,6 +18,7 @@ import { SquarePen, Trash } from "lucide-react";
 import Modal from "@/components/Modal";
 import DeleteDepartment from "./DeleteDepartment";
 import useDepartments from "../hooks/queries/useDepartments";
+import { DialogDescription } from "@radix-ui/react-dialog";
 
 const DepartmentList = () => {
   const { data } = useDepartments();
@@ -49,6 +50,7 @@ const DepartmentList = () => {
                 ? "Edit Department"
                 : "Delete Department"}
             </DialogTitle>
+            <DialogDescription></DialogDescription>
           </DialogHeader>
           {selectedDepartment &&
             (selectedAction === "Update" ? (

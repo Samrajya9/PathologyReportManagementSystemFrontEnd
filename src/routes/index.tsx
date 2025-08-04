@@ -1,14 +1,21 @@
 import AdminLayout from "@/components/layouts/AdminLayout";
 import Dashboard from "@/pages/Admin/Dashboard";
-import Department from "@/pages/Admin/Department";
-import CreateDepartment from "@/pages/Admin/Department/create";
 import NotFound from "@/pages/NotFound";
 import type { RouteObject } from "react-router";
+import { lazy, Suspense } from "react";
+
+const CreateDepartment = lazy(() => import("@/pages/Admin/Department/create"));
+
+const Department = lazy(() => import("@/pages/Admin/Department"));
 
 const routes: RouteObject[] = [
   {
     path: "admin",
-    element: <AdminLayout />,
+    element: (
+      <Suspense fallback={<div>Loading </div>}>
+        <AdminLayout />
+      </Suspense>
+    ),
     children: [
       { path: "dashboard", element: <Dashboard /> },
       { path: "reports/financial", element: <Dashboard /> },
@@ -16,7 +23,10 @@ const routes: RouteObject[] = [
         path: "department",
         element: <Department />,
       },
-      { path: "department/create", element: <CreateDepartment /> },
+      {
+        path: "department/create",
+        element: <CreateDepartment />,
+      },
     ],
   },
   { path: "*", element: <NotFound /> },
