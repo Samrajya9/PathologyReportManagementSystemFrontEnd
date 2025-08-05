@@ -93,6 +93,10 @@ export const paths = {
       index: "/admin/test_unit",
       create: "/admin/test_unit/create",
     },
+    test_category: {
+      index: "/admin/test_category",
+      create: "/admin/test_category/create",
+    },
   },
   user: {
     profile: buildPath(routeGraph, "user", "profile"),
@@ -131,6 +135,14 @@ export const menuItems: MenuItem[] = [
     url: paths.admin.test_unit.index,
     children: [
       { icon: Card, label: "Create", url: paths.admin.test_unit.create },
+    ],
+  },
+  {
+    icon: CreditCard,
+    label: "Test Category",
+    url: paths.admin.test_category.index,
+    children: [
+      { icon: Card, label: "Create", url: paths.admin.test_category.create },
     ],
   },
 ];

@@ -10,12 +10,19 @@ import toast from "react-hot-toast";
 
 const CreateDepartment = () => {
   const methods = useDepartmentForm();
-  const { handleSubmit, reset } = methods;
+  const {
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = methods;
 
   const { mutateAsync, isPending } = useCreateDepartment();
 
   const onSubmit: SubmitHandler<TDepartmentForm> = async (data) => {
     try {
+      if (errors.name) {
+        toast.error(errors.name?.message || "Required field are missing");
+      }
       await mutateAsync(data);
       toast.success("Department created successfully!");
       reset();

@@ -8,6 +8,9 @@ import CreateContainer from "@/pages/Admin/Container/create";
 import { paths } from "@/constanst/navigationItems";
 import CreateTestUnit from "@/pages/Admin/TestUnit/create";
 import TestUnit from "@/pages/Admin/TestUnit";
+import TestCategory from "@/pages/Admin/TestCategory";
+import CreateTestCategory from "@/pages/Admin/TestCategory/create";
+
 const CreateDepartment = lazy(() => import("@/pages/Admin/Department/create"));
 const Department = lazy(() => import("@/pages/Admin/Department"));
 
@@ -43,6 +46,17 @@ export const routes: RouteObject[] = [
         children: [
           { index: true, element: <TestUnit /> },
           { path: paths.admin.test_unit.create, element: <CreateTestUnit /> },
+        ],
+      },
+
+      {
+        path: paths.admin.test_category.index,
+        children: [
+          { index: true, element: <TestCategory /> },
+          {
+            path: paths.admin.test_category.create,
+            element: <CreateTestCategory />,
+          },
         ],
       },
     ],

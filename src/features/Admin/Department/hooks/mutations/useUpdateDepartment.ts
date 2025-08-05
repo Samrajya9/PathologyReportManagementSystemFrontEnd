@@ -14,7 +14,7 @@ export const useUpdateDepartment = () => {
 
   return useMutation({
     mutationFn: ({ id, data }: UpdateDepartmentInput) =>
-      departmentClient.patch<Department>(id, data),
+      departmentClient.patch<Department, TDepartmentForm>(id, data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: departmentQueryKeys.all });
     },

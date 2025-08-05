@@ -1,25 +1,25 @@
-import type { TTestUnit } from "../types/testUnit.types";
+import type { TestCategory } from "../types/testCategory.types";
 import {
   DialogHeader,
   DialogContent,
   DialogDescription,
   DialogTitle,
 } from "@/components/ui/dialog";
-import DeleteTestUnit from "./DeleteTestUnit";
-
+import DeleteTestCategoryForm from "./DeleteTestCategoryForm";
 interface Props {
-  data: TTestUnit;
+  data: TestCategory;
   onSuccess: () => void;
 }
-const DeleteTestUnitModal = ({ data, onSuccess }: Props) => {
+const DeleteTestCategoryModal = ({ data, onSuccess }: Props) => {
   return (
     <DialogContent>
       <DialogHeader>
         <DialogTitle>Delete Department</DialogTitle>
         <DialogDescription></DialogDescription>
       </DialogHeader>
-      <DeleteTestUnit data={data} onSuccess={onSuccess} />
+      <DeleteTestCategoryForm data={data} onSuccess={onSuccess} />
     </DialogContent>
   );
 };
-export default DeleteTestUnitModal;
+
+export default DeleteTestCategoryModal;

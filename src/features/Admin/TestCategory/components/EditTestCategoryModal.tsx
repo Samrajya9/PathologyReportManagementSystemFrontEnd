@@ -4,23 +4,23 @@ import {
   DialogDescription,
   DialogTitle,
 } from "@/components/ui/dialog";
-import EditTestUnit from "./EditTestUnit";
-import type { TTestUnit } from "../types/testUnit.types";
+import EditTestCategoryForm from "./EditTestCategoryForm";
+import type { TestCategory } from "../types/testCategory.types";
 
 interface Props {
-  data: TTestUnit;
+  data: TestCategory;
   onSuccess: () => void;
 }
-const EditTestUnitModal = ({ data, onSuccess }: Props) => {
+const EditTestCategoryModal = ({ data, onSuccess }: Props) => {
   return (
     <DialogContent>
       <DialogHeader>
         <DialogTitle>"Edit Department"</DialogTitle>
         <DialogDescription></DialogDescription>
       </DialogHeader>
-      <EditTestUnit data={data} onSuccess={onSuccess} />
+      <EditTestCategoryForm data={data} onSuccess={onSuccess} />
     </DialogContent>
   );
 };
 
-export default EditTestUnitModal;
+export default EditTestCategoryModal;

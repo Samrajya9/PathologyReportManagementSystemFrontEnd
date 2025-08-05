@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import type { TContainerForm } from "../../types/containerForm.types";
-import type { Container } from "../../types/ContainerResponse";
+import type { Container } from "../../types/container.types";
 import { containerClient } from "../../api/container.api";
 import { containerQueryKeys } from "../../constants/container.queryKeys";
 

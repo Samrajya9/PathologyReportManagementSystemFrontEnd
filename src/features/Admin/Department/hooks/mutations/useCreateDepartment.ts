@@ -6,7 +6,6 @@ import type { TDepartmentForm } from "../../types";
 
 export const useCreateDepartment = () => {
   const queryClient = useQueryClient();
-
   return useMutation({
     mutationFn: (data: TDepartmentForm) => departmentClient.post("", data),
     onSuccess: () => {

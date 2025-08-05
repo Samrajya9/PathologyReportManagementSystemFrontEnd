@@ -18,7 +18,15 @@ function App() {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <Toaster position="top-right" reverseOrder={false} />
+        <Toaster
+          position="top-right"
+          reverseOrder={false}
+          gutter={8}
+          toastOptions={{
+            duration: 3000,
+            removeDelay: 1000,
+          }}
+        />
         <Suspense fallback={<div>Loading route...</div>}>
           <RouterProvider router={router} />
         </Suspense>

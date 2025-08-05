@@ -72,7 +72,7 @@ const DepartmentList = () => {
             <TableHead>Id</TableHead>
             <TableHead>Name</TableHead>
             <TableHead>Description</TableHead>
-            <TableHead className="">Action</TableHead>
+            <TableHead className="text-right">Action</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -82,7 +82,7 @@ const DepartmentList = () => {
               <TableCell className="font-medium">{row.name}</TableCell>
               <TableCell>{row.description}</TableCell>
               <TableCell>
-                <div className="flex gap-4 items-center">
+                <div className="flex gap-4 items-center justify-end">
                   <SquarePen
                     onClick={() => handleOnEditClick(row)}
                     size={16}

@@ -1,7 +1,7 @@
 import { FormProvider, type SubmitHandler } from "react-hook-form";
 import useUpdateContainer from "../hooks/mutations/useUpdateContainer";
 import { useContainerForm } from "../hooks/useContainerForm";
-import type { Container } from "../types/ContainerResponse";
+import type { Container } from "../types/container.types";
 import type { TContainerForm } from "../types/containerForm.types";
 import toast from "react-hot-toast";
 import { Button } from "@/components/ui/button";

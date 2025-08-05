@@ -5,7 +5,6 @@ import departmentQueryKeys from "../../constants/department.queryKeys";
 
 export const useDeleteDepartment = () => {
   const queryClient = useQueryClient();
-
   return useMutation({
     mutationFn: (id: string) => departmentClient.delete(id),
     onSuccess: () => {

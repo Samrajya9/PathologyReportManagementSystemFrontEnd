@@ -6,30 +6,30 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useState } from "react";
-import Modal from "@/components/Modal";
+import useTestCategory from "../hooks/queries/useTestCategory";
 import { SquarePen, Trash } from "lucide-react";
-import type { TTestUnit } from "../types/testUnit.types";
-import useTestUnit from "../hooks/queries/useTestUnit";
-import EditTestUnitModal from "./EditTestUnitModal";
-import DeleteTestUnitModal from "./DeleteTestUnitModal";
+import { useState } from "react";
+import type { TestCategory } from "../types/testCategory.types";
+import Modal from "@/components/Modal";
+import EditTestCategoryModal from "./EditTestCategoryModal";
+import DeleteTestCategoryModal from "./DeleteTestCategoryModal";
 
-const TestUnitList = () => {
-  const { data } = useTestUnit();
+const TestCategoryList = () => {
+  const { data } = useTestCategory();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedAction, setSelectedAction] = useState<
     "Update" | "Delete" | null
   >(null);
 
   const [selectedDepartment, setSelectedDepartment] =
-    useState<TTestUnit | null>(null);
+    useState<TestCategory | null>(null);
 
-  const handleOnEditClick = (department: TTestUnit) => {
+  const handleOnEditClick = (department: TestCategory) => {
     setSelectedAction("Update");
     setSelectedDepartment(department);
     setIsOpen(true);
   };
-  const handleOnDeleteClick = (department: TTestUnit) => {
+  const handleOnDeleteClick = (department: TestCategory) => {
     setSelectedAction("Delete");
     setSelectedDepartment(department);
     setIsOpen(true);
@@ -39,18 +39,19 @@ const TestUnitList = () => {
       <Modal open={isOpen} setOpen={setIsOpen}>
         {selectedDepartment &&
           (selectedAction === "Update" ? (
-            <EditTestUnitModal
+            <EditTestCategoryModal
               data={selectedDepartment}
               onSuccess={() => setIsOpen(false)}
             />
           ) : (
-            <DeleteTestUnitModal
-              data={selectedDepartment}
-              onSuccess={() => setIsOpen(false)}
-            />
+            <>
+              <DeleteTestCategoryModal
+                data={selectedDepartment}
+                onSuccess={() => setIsOpen(false)}
+              />
+            </>
           ))}
       </Modal>
-
       <Table>
         <TableHeader>
           <TableRow>
@@ -64,7 +65,7 @@ const TestUnitList = () => {
             <TableRow key={row.id}>
               <TableCell>{row.id}</TableCell>
               <TableCell className="font-medium">{row.name}</TableCell>
-              <TableCell className="">
+              <TableCell>
                 <div className="flex gap-4 items-center justify-end">
                   <SquarePen
                     onClick={() => handleOnEditClick(row)}
@@ -87,4 +88,4 @@ const TestUnitList = () => {
   );
 };
 
-export default TestUnitList;
+export default TestCategoryList;

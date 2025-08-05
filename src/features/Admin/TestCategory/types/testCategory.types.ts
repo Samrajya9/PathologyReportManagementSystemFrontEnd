@@ -1,13 +1,12 @@
 import type { Response } from "@/types/Respose.types";
 
-export type Department = {
+export type TestCategory = {
   id: number;
   createdAt: string;
   updatedAt: string;
   name: string;
-  description: string | null;
 };
 
-export type DepartmentResponse = Response & {
-  data: Department[];
+export type testCategoryResponse = Response & {
+  data: TestCategory[];
 };

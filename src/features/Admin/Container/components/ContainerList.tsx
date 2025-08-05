@@ -9,7 +9,7 @@ import {
 import { useContainers } from "../hooks/queries/useContainers";
 import { SquarePen, Trash } from "lucide-react";
 import { useState } from "react";
-import type { Container } from "../types/ContainerResponse";
+import type { Container } from "../types/container.types";
 
 import Modal from "@/components/Modal";
 import {

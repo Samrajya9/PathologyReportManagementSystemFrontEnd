@@ -1,20 +1,16 @@
-import toast from "react-hot-toast";
-import type { Container } from "../types/container.types";
 import { Button } from "@/components/ui/button";
-import useDeleteContainer from "../hooks/mutations/useDeleteContainer";
+import type { TestCategory } from "../types/testCategory.types";
+import toast from "react-hot-toast";
+import useDeleteTestCategory from "../hooks/mutations/useDeleteTestCategory";
 
-interface DeleteContainerProps {
-  data: Container;
+interface Props {
+  data: TestCategory;
   onSuccess: () => void;
 }
-
-const DeleteContainer: React.FC<DeleteContainerProps> = ({
-  data,
-  onSuccess,
-}) => {
+const DeleteTestCategoryForm = ({ data, onSuccess }: Props) => {
   const { id, name } = data;
 
-  const { mutateAsync, isPending } = useDeleteContainer();
+  const { mutateAsync, isPending } = useDeleteTestCategory();
 
   const handleDelete = async () => {
     try {
@@ -25,7 +21,6 @@ const DeleteContainer: React.FC<DeleteContainerProps> = ({
       toast.error("Failed to delete department");
     }
   };
-
   return (
     <div className="space-y-4 rounded-lg ">
       <p className="text-sm text-muted-foreground">
@@ -46,4 +41,4 @@ const DeleteContainer: React.FC<DeleteContainerProps> = ({
   );
 };
 
-export default DeleteContainer;
+export default DeleteTestCategoryForm;
