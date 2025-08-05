@@ -13,7 +13,7 @@ const Container = () => {
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between ">
-        <h1>{"Department".toLocaleUpperCase()}</h1>
+        <h1>{"Container".toLocaleUpperCase()}</h1>
         <Button
           variant={"outline"}
           onClick={() => navigate("/admin/container/create")}

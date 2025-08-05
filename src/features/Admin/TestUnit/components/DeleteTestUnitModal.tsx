@@ -1,0 +1,25 @@
+import type { TTestUnit } from "../types/testUnit.types";
+import {
+  DialogHeader,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import DeleteTestUnit from "./DeleteTestUnit";
+
+interface Props {
+  data: TTestUnit;
+  onSuccess: () => void;
+}
+const DeleteTestUnitModal = ({ data, onSuccess }: Props) => {
+  return (
+    <DialogContent>
+      <DialogHeader>
+        <DialogTitle>"Edit Department"</DialogTitle>
+        <DialogDescription></DialogDescription>
+      </DialogHeader>
+      <DeleteTestUnit data={data} onSuccess={onSuccess} />
+    </DialogContent>
+  );
+};
+export default DeleteTestUnitModal;

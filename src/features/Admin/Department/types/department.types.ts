@@ -6,7 +6,6 @@ export type Department = {
   description: string | null;
 };
 
-export type DepartmentResponse = {
-  status: "success";
+export type DepartmentResponse = Response & {
   data: Department[];
 };

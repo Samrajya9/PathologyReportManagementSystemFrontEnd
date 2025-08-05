@@ -1,24 +1,24 @@
-import ErrorBoundary from "@/components/ErrorBoundary";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { paths } from "@/constanst/navigationItems";
-import DepartmentList from "@/features/Admin/Department/components/DepartmentList";
-import DepartmentListError from "@/features/Admin/Department/components/DepartmentListError";
-import DepartmentListSkeleton from "@/features/Admin/Department/components/DepartmentListSkeleton";
-import { Suspense } from "react";
 import { useNavigate } from "react-router";
+import { Suspense } from "react";
+import { Button } from "@/components/ui/button";
+import ErrorBoundary from "@/components/ErrorBoundary";
+import DepartmentListSkeleton from "@/features/Admin/Department/components/DepartmentListSkeleton";
+import DepartmentListError from "@/features/Admin/Department/components/DepartmentListError";
+import TestUnitList from "@/features/Admin/TestUnit/components/TestUnitList";
 
-const Department = () => {
+const TestUnit = () => {
   const navigate = useNavigate();
+
   return (
     <Card>
       <CardHeader className="flex flex-row items-center justify-between ">
-        <h1>{"Department".toLocaleUpperCase()}</h1>
+        <h1>{"Test Unit".toLocaleUpperCase()}</h1>
         <Button
           variant={"outline"}
           onClick={() => {
-            console.log(paths.admin.department.create);
-            navigate(paths.admin.department.create);
+            navigate(paths.admin.test_unit.create);
           }}
         >
           Create
@@ -27,12 +27,11 @@ const Department = () => {
       <CardContent>
         <ErrorBoundary fallback={<DepartmentListError />}>
           <Suspense fallback={<DepartmentListSkeleton />}>
-            <DepartmentList />
+            <TestUnitList />
           </Suspense>
         </ErrorBoundary>
       </CardContent>
     </Card>
   );
 };
-
-export default Department;
+export default TestUnit;

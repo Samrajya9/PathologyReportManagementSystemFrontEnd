@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import { ScrollArea } from "./ui/scroll-area";
-import { useState, type HTMLAttributes } from "react";
+import { useEffect, useState, type HTMLAttributes } from "react";
 import {
   getActiveMenuLabel,
   menuItems,
@@ -80,16 +80,17 @@ interface NavItemProps {
 }
 
 const NavItem = ({ item, isCollapsed, location, depth }: NavItemProps) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const Icon = item.icon;
   const hasChildren = item.children && item.children.length > 0;
-  const isActive =
-    location.pathname === item.url ||
-    (item.url !== "#" && location.pathname.startsWith(item.url));
+  const isActive = location.pathname === item.url;
+
+  useEffect(() => {
+    setIsOpen(true);
+  }, [isActive]);
 
   const toggleOpen = (e: React.MouseEvent) => {
     if (hasChildren) {
-      e.preventDefault();
       setIsOpen(!isOpen);
     }
   };
@@ -97,7 +98,7 @@ const NavItem = ({ item, isCollapsed, location, depth }: NavItemProps) => {
   return (
     <div className="space-y-1">
       <Link
-        to={item.url === "#" ? location.pathname : item.url}
+        to={item.url}
         onClick={toggleOpen}
         className={cn(
           "flex items-center gap-3 rounded-md px-3 py-2 transition-colors",
@@ -114,9 +115,9 @@ const NavItem = ({ item, isCollapsed, location, depth }: NavItemProps) => {
             <span className="text-sm font-medium flex-1">{item.label}</span>
             {hasChildren &&
               (isOpen ? (
-                <ChevronDown className="h-4 w-4" />
+                <ChevronDown className="h-4 w-4" onClick={toggleOpen} />
               ) : (
-                <ChevronRight className="h-4 w-4" />
+                <ChevronRight className="h-4 w-4" onClick={toggleOpen} />
               ))}
           </>
         )}
