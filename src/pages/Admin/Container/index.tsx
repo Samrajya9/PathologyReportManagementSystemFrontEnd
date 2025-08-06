@@ -1,6 +1,8 @@
+//src/pages/Admin/Container/index.tsx
 import ErrorBoundary from "@/components/ErrorBoundary";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { paths } from "@/constanst/navigationItems";
 import ContainerList from "@/features/Admin/Container/components/ContainerList";
 import DepartmentListError from "@/features/Admin/Department/components/DepartmentListError";
 import DepartmentListSkeleton from "@/features/Admin/Department/components/DepartmentListSkeleton";
@@ -16,7 +18,7 @@ const Container = () => {
         <h1>{"Container".toLocaleUpperCase()}</h1>
         <Button
           variant={"outline"}
-          onClick={() => navigate("/admin/container/create")}
+          onClick={() => navigate(paths.admin.container.create)}
         >
           Create
         </Button>

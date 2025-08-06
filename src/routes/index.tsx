@@ -10,6 +10,10 @@ import CreateTestUnit from "@/pages/Admin/TestUnit/create";
 import TestUnit from "@/pages/Admin/TestUnit";
 import TestCategory from "@/pages/Admin/TestCategory";
 import CreateTestCategory from "@/pages/Admin/TestCategory/create";
+import Specimens from "@/pages/Admin/Specimen";
+import CreateSpecimen from "@/pages/Admin/Specimen/create";
+import ResultValueTypes from "@/pages/Admin/ResultValueTypes";
+import CreateResultValueType from "@/pages/Admin/ResultValueTypes/create";
 
 const CreateDepartment = lazy(() => import("@/pages/Admin/Department/create"));
 const Department = lazy(() => import("@/pages/Admin/Department"));
@@ -56,6 +60,26 @@ export const routes: RouteObject[] = [
           {
             path: paths.admin.test_category.create,
             element: <CreateTestCategory />,
+          },
+        ],
+      },
+      {
+        path: paths.admin.specimens.index,
+        children: [
+          { index: true, element: <Specimens /> },
+          {
+            path: paths.admin.specimens.create,
+            element: <CreateSpecimen />,
+          },
+        ],
+      },
+      {
+        path: paths.admin.resultValueTypes.index,
+        children: [
+          { index: true, element: <ResultValueTypes /> },
+          {
+            path: paths.admin.resultValueTypes.create,
+            element: <CreateResultValueType />,
           },
         ],
       },

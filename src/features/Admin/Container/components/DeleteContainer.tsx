@@ -1,3 +1,4 @@
+//src/features/Admin/Container/components/DeleteContainer.tsx
 import toast from "react-hot-toast";
 import type { Container } from "../types/container.types";
 import { Button } from "@/components/ui/button";
