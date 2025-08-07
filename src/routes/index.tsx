@@ -85,5 +85,6 @@ export const routes: RouteObject[] = [
       },
     ],
   },
+
   { path: "*", element: <NotFound /> },
 ];

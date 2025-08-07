@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import { routes } from "./routes";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { Suspense } from "react";
 
 const queryClient = new QueryClient({
@@ -10,9 +10,15 @@ const queryClient = new QueryClient({
       retry: 2,
       staleTime: 30 * 1000,
     },
+    mutations: {
+      onError: (error) => {
+        console.error("Mutation failed:", error);
+        toast.error(error.message);
+      },
+    },
   },
 });
-const router = createBrowserRouter(routes);
+const router = createBrowserRouter([...routes]);
 
 function App() {
   return (

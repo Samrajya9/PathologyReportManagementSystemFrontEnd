@@ -12,8 +12,5 @@ export const useCreateResultValueType = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: resultValueTypeQueryKeys.all });
     },
-    onError: (error) => {
-      console.error("Failed to create result value type:", error);
-    },
   });
 };

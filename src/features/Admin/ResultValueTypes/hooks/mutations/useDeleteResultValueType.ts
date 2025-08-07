@@ -4,14 +4,15 @@ import { resultValueTypeQueryKeys } from "../../constants/resultValueType.queryK
 
 export const useDeleteResultValueType = () => {
   const queryClient = useQueryClient();
-
   return useMutation({
     mutationFn: (id: string) => resultValueTypeClient.delete(id),
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: resultValueTypeQueryKeys.all });
+    onMutate: () => {
+      return { meta: { invalidateQueries: resultValueTypeQueryKeys.all } };
     },
-    onError: (error) => {
-      console.error("Failed to delete result value type:", error);
+    onSuccess: () => {
+      return queryClient.invalidateQueries({
+        queryKey: resultValueTypeQueryKeys.all,
+      });
     },
   });
 };
