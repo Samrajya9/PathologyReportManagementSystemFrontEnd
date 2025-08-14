@@ -23,7 +23,7 @@ export function AppSidebar({ className }: AppSidebarProps) {
   return (
     <aside
       className={cn(
-        "text-sidebar-foreground relative transition-all duration-300 ease-out flex flex-col",
+        "text-sidebar-foreground relative transition-all duration-300 ease-out flex flex-col ",
         isCollapsed ? "w-16" : "w-64",
         className
       )}
@@ -89,7 +89,7 @@ const NavItem = ({ item, isCollapsed, location, depth }: NavItemProps) => {
     setIsOpen(true);
   }, [isActive]);
 
-  const toggleOpen = (e: React.MouseEvent) => {
+  const toggleOpen = (event: React.MouseEvent) => {
     if (hasChildren) {
       setIsOpen(!isOpen);
     }

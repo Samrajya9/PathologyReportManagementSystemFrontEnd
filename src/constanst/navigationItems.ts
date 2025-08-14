@@ -1,4 +1,4 @@
-import { BarChart3, CreditCard, CreditCard as Card } from "lucide-react";
+import { BarChart3, CreditCard } from "lucide-react";
 
 export function getActiveMenuLabel(
   url: string,
@@ -125,48 +125,30 @@ export const menuItems: MenuItem[] = [
     icon: CreditCard,
     label: "Department",
     url: paths.admin.department.index,
-    children: [
-      { icon: Card, label: "Create", url: paths.admin.department.create },
-    ],
   },
   {
     icon: CreditCard,
     label: "Container",
     url: paths.admin.container.index,
-    children: [
-      { icon: Card, label: "Create", url: paths.admin.container.create },
-    ],
   },
   {
     icon: CreditCard,
     label: "Test Unit",
     url: paths.admin.test_unit.index,
-    children: [
-      { icon: Card, label: "Create", url: paths.admin.test_unit.create },
-    ],
   },
   {
     icon: CreditCard,
     label: "Test Category",
     url: paths.admin.test_category.index,
-    children: [
-      { icon: Card, label: "Create", url: paths.admin.test_category.create },
-    ],
   },
   {
     icon: CreditCard,
     label: "Specimens",
     url: paths.admin.specimens.index,
-    children: [
-      { icon: Card, label: "Create", url: paths.admin.specimens.create },
-    ],
   },
   {
     icon: CreditCard,
     label: "ResultValueType",
     url: paths.admin.resultValueTypes.index,
-    children: [
-      { icon: Card, label: "Create", url: paths.admin.resultValueTypes.create },
-    ],
   },
 ];
