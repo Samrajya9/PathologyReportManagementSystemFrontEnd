@@ -16,7 +16,7 @@ const TestUnit = () => {
       <Modal open={isOpen} setOpen={setIsOpen}>
         <CreateTestUnitModal onSuccess={() => setIsOpen(false)} />
       </Modal>
-      <Card>
+      <Card className="bg-transparent">
         <CardHeader className="flex flex-row items-center justify-between ">
           <h1>{"Test Unit".toLocaleUpperCase()}</h1>
           <Button

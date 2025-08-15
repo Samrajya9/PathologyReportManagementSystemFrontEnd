@@ -151,4 +151,11 @@ export const menuItems: MenuItem[] = [
     label: "ResultValueType",
     url: paths.admin.resultValueTypes.index,
   },
+  // TODO
+  // If you start with just the module to create/update test master data, you’re basically building the “Lab Test Catalog” part of an LIS.
+  {
+    icon: CreditCard,
+    label: "Laboratory Information System (LIS)",
+    url: paths.admin.resultValueTypes.index,
+  },
 ];

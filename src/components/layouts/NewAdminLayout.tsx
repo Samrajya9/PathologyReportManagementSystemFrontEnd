@@ -49,10 +49,10 @@ const NavItem = ({ item, isCollapsed, location, depth }: NavItemProps) => {
         to={item.url}
         onClick={toggleOpen}
         className={cn(
-          "flex items-center gap-3 rounded-md px-3 py-2 transition-colors",
+          "flex items-center gap-3 rounded-md py-2 transition-all duration-300",
           isActive
-            ? "bg-sidebar-accent text-sidebar-accent-foreground"
-            : "text-sidebar-accent hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
+            ? "bg-sidebar-accent text-sidebar-accent-foreground px-3"
+            : "text-sidebar-accent hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:px-3",
           isCollapsed && "justify-center px-0",
           `pl-${3 + depth * 2}`
         )}
@@ -94,19 +94,29 @@ const NavList = () => {
   const location = useLocation();
 
   return (
-    <ScrollArea className="py-4">
-      <nav className="grid gap-1 px-2">
-        {menuItems.map((item) => (
-          <NavItem
-            key={item.label}
-            item={item}
-            isCollapsed={isCollapsed}
-            location={location}
-            depth={0}
-          />
-        ))}
-      </nav>
-    </ScrollArea>
+    <nav className="grid gap-1">
+      {menuItems.map((item) => (
+        <NavItem
+          key={item.label}
+          item={item}
+          isCollapsed={isCollapsed}
+          location={location}
+          depth={0}
+        />
+      ))}
+    </nav>
+  );
+};
+
+const LeftSiderBarHeader = () => {
+  const { isCollapsed } = LeftSidebar.useCollapsibleBarContext();
+  return (
+    <div className="flex-1 flex gap-4 items-center ">
+      <Avatar className="w-8 h-8">
+        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+      </Avatar>
+      {isCollapsed ? null : <p>Samrajya</p>}
+    </div>
   );
 };
 
@@ -115,8 +125,16 @@ const NewAdminLayout = () => {
     <LeftSidebar.Provider>
       <RightSidebar.Provider>
         <div className="flex min-h-screen">
-          <LeftSidebar.Aside className="border-r border-r-black/10">
-            <NavList />
+          <LeftSidebar.Aside
+            className="border-r border-r-black/10"
+            collapsedWidth="w-18"
+          >
+            <ScrollArea className="p-4">
+              <div className="flex flex-col gap-5 ">
+                <LeftSiderBarHeader />
+                <NavList />
+              </div>
+            </ScrollArea>
           </LeftSidebar.Aside>
           <div className="flex-1 flex flex-col ">
             <Header />
