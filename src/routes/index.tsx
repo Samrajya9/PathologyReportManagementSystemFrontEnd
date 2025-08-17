@@ -11,11 +11,13 @@ import ResultValueTypes from "@/pages/Admin/ResultValueTypes";
 import NewAdminLayout from "@/components/layouts/NewAdminLayout";
 
 const Department = lazy(() => import("@/pages/Admin/Department"));
+const Test = lazy(() => import("@/pages/Admin/Test"));
 
 export const routes: RouteObject[] = [
   {
     path: paths.admin.index,
     element: (
+      // This suspense Will trigger when department and Test is loading
       <Suspense fallback={<div>Loading </div>}>
         <NewAdminLayout />
       </Suspense>
@@ -46,6 +48,10 @@ export const routes: RouteObject[] = [
       {
         path: paths.admin.resultValueTypes.index,
         children: [{ index: true, element: <ResultValueTypes /> }],
+      },
+      {
+        path: paths.admin.test.index,
+        children: [{ index: true, element: <Test /> }],
       },
     ],
   },
