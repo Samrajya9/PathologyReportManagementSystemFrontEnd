@@ -93,10 +93,6 @@ export const paths = {
       index: "/admin/test_unit",
       create: "/admin/test_unit/create",
     },
-    test_category: {
-      index: "/admin/test_category",
-      create: "/admin/test_category/create",
-    },
     specimens: {
       index: "/admin/specimens",
       create: "/admin/specimens/create",
@@ -138,11 +134,6 @@ export const menuItems: MenuItem[] = [
     icon: CreditCard,
     label: "Test Unit",
     url: paths.admin.test_unit.index,
-  },
-  {
-    icon: CreditCard,
-    label: "Test Category",
-    url: paths.admin.test_category.index,
   },
   {
     icon: CreditCard,
