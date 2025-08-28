@@ -2,11 +2,11 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { testUnitClient } from "../../api/testUnitClient";
 import { testUnitQueryKeys } from "../../constants/testUnitQueryKeys";
 import type { TestUnitResponse } from "../../types/testUnit.types";
-import type { TTestUnitForm } from "../../types/testUnitForm.types";
+import type { TestUnitForm } from "../../types/testUnitForm.types";
 
 interface UpdateTestUnitInputs {
   id: string;
-  data: TTestUnitForm;
+  data: TestUnitForm;
 }
 
 const useUpdateTestUnit = () => {

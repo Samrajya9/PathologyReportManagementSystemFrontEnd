@@ -5,7 +5,6 @@ const specimenRequirementSchema = z.object({
   containerId: z.number().int().min(1, "Container ID is required"),
 });
 
-// Sub-schema for referenceRanges
 const referenceRangeSchema = z.object({
   age_min_years: z.number(),
   age_max_years: z.number(),
@@ -17,19 +16,36 @@ const referenceRangeSchema = z.object({
   notes: z.string().optional(),
 });
 
-export const testFormSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  price: z.number().min(0, "Price must be a positive number"),
-  testUnitId: z.number().int().min(1, "Unit ID is required"),
-  medicalDepartmentId: z.number().int().min(1, "Department ID is required"),
-  resultValueTypeId: z
-    .number()
-    .int()
-    .min(1, "Result Value Type ID is required"),
-  specimenRequirements: z
-    .array(specimenRequirementSchema)
-    .nonempty("At least one specimen requirement is required"),
-  referenceRanges: z
-    .array(referenceRangeSchema)
-    .nonempty("At least one reference range is required"),
+const resultValueOptionSchema = z.object({
+  value: z.string(),
+  isDefault: z.boolean(),
 });
+
+export const ResultValueTypeEnum = z.enum(["Numeric", "Text", "Categorical"]);
+
+export const testFormSchema = z
+  .object({
+    name: z.string().min(1, "Name is required"),
+    price: z.number().min(0, "Price must be a positive number"),
+    testUnitId: z.number().int().min(1, "Unit ID is required"),
+    medicalDepartmentId: z.number().int().min(1, "Department ID is required"),
+    resultValueType: ResultValueTypeEnum,
+    resultValueOptions: z.array(resultValueOptionSchema).optional(),
+    specimenRequirements: z
+      .array(specimenRequirementSchema)
+      .nonempty("At least one specimen requirement is required"),
+    referenceRanges: z
+      .array(referenceRangeSchema)
+      .nonempty("At least one reference range is required"),
+  })
+  .superRefine((data, ctx) => {
+    if (data.resultValueType === "Categorical") {
+      if (!data.resultValueOptions || data.resultValueOptions.length === 0) {
+        ctx.addIssue({
+          path: ["resultValueOptions"],
+          code: "custom",
+          message: "resultValueOptions is required for categorical tests",
+        });
+      }
+    }
+  });

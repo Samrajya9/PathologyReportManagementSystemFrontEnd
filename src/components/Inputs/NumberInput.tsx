@@ -4,11 +4,12 @@ import { cn } from "@/lib/utils";
 
 const NumberInput = forwardRef<HTMLInputElement, InputProps>(
   (props, forwardedRef) => {
-    const { className, label, type, id: customId, ...rest } = props;
+    const { className, label, type, step, id: customId, ...rest } = props;
 
     return (
       <Input
         type="number"
+        step={step ? step : "any"}
         id={customId}
         label={label}
         ref={forwardedRef}

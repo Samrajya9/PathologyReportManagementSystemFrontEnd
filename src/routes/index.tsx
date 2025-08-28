@@ -5,9 +5,8 @@ import { lazy, Suspense } from "react";
 import Container from "@/pages/Admin/Container";
 import { paths } from "@/constanst/navigationItems";
 import TestUnit from "@/pages/Admin/TestUnit";
-import TestCategory from "@/pages/Admin/TestCategory";
 import Specimens from "@/pages/Admin/Specimen";
-import ResultValueTypes from "@/pages/Admin/ResultValueTypes";
+// import ResultValueTypes from "@/pages/Admin/ResultValueTypes";
 import NewAdminLayout from "@/components/layouts/NewAdminLayout";
 
 const Department = lazy(() => import("@/pages/Admin/Department"));
@@ -17,7 +16,6 @@ export const routes: RouteObject[] = [
   {
     path: paths.admin.index,
     element: (
-      // This suspense Will trigger when department and Test is loading
       <Suspense fallback={<div>Loading </div>}>
         <NewAdminLayout />
       </Suspense>
@@ -38,17 +36,10 @@ export const routes: RouteObject[] = [
       },
 
       {
-        path: paths.admin.test_category.index,
-        children: [{ index: true, element: <TestCategory /> }],
-      },
-      {
         path: paths.admin.specimens.index,
         children: [{ index: true, element: <Specimens /> }],
       },
-      {
-        path: paths.admin.resultValueTypes.index,
-        children: [{ index: true, element: <ResultValueTypes /> }],
-      },
+
       {
         path: paths.admin.test.index,
         children: [{ index: true, element: <Test /> }],

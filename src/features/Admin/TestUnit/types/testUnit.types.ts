@@ -1,4 +1,4 @@
-export type TTestUnit = {
+export type TestUnit = {
   id: number;
   createdAt: string;
   updatedAt: string;
@@ -7,5 +7,5 @@ export type TTestUnit = {
 
 export type TestUnitResponse = {
   status: "success";
-  data: TTestUnit[];
+  data: TestUnit[];
 };

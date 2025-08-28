@@ -1,19 +1,19 @@
 import React from "react";
-import type { TTestUnit } from "../types/testUnit.types";
+import type { TestUnit } from "../types/testUnit.types";
 import useTestUnitForm from "../hooks/useTestUnitForm";
 import { FormProvider, type SubmitHandler } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import useUpdateTestUnit from "../hooks/mutations/useUpdateTestUnit";
 import TestUnitForm from "./TestUnitForm";
 import toast from "react-hot-toast";
-import type { TTestUnitForm } from "../types/testUnitForm.types";
+import type { TestUnitForm as TTestUnitForm } from "../types/testUnitForm.types";
 
-interface EditTestUnitProps {
-  data: TTestUnit;
+interface EdiTestUnitProps {
+  data: TestUnit;
   onSuccess: () => void;
 }
 
-const EditTestUnit: React.FC<EditTestUnitProps> = ({ data, onSuccess }) => {
+const EdiTestUnit: React.FC<EdiTestUnitProps> = ({ data, onSuccess }) => {
   const { createdAt, updatedAt, id, ...rest } = data;
 
   const initialValue = {
@@ -44,4 +44,4 @@ const EditTestUnit: React.FC<EditTestUnitProps> = ({ data, onSuccess }) => {
   );
 };
 
-export default EditTestUnit;
+export default EdiTestUnit;

@@ -24,7 +24,7 @@ const ResultValueSelect: FC<ResultValueSelectProps> = ({
 
   return (
     <Controller
-      name="resultValueTypeId"
+      name="resultValueType"
       control={control}
       render={({ field, fieldState: { error } }) => {
         return (
@@ -32,7 +32,7 @@ const ResultValueSelect: FC<ResultValueSelectProps> = ({
             <Label htmlFor="resultValue">Result Value</Label>
             <Select
               value={field.value ? String(field.value) : ""}
-              onValueChange={(val) => field.onChange(Number(val))} // convert to number
+              onValueChange={(val) => field.onChange(val)}
             >
               <SelectTrigger id="resultValue">
                 <SelectValue placeholder="Select a Result Value" />
@@ -41,7 +41,7 @@ const ResultValueSelect: FC<ResultValueSelectProps> = ({
                 {data.data.map((resultValue) => (
                   <SelectItem
                     key={resultValue.id}
-                    value={String(resultValue.id)}
+                    value={String(resultValue.name)}
                   >
                     {resultValue.name}
                   </SelectItem>

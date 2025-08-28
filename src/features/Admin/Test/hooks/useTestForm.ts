@@ -8,7 +8,8 @@ const defaultValue: testForm = {
   price: 0,
   testUnitId: 0,
   medicalDepartmentId: 0,
-  resultValueTypeId: 0,
+  resultValueType: "Text",
+  resultValueOptions: [{ value: "", isDefault: false }],
   specimenRequirements: [{ specimenId: 0, containerId: 0 }],
   referenceRanges: [
     {

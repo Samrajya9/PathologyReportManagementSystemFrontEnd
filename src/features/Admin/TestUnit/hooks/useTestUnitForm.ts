@@ -1,18 +1,18 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import type { TTestUnitForm } from "../types/testUnitForm.types";
+import type { TestUnitForm } from "../types/testUnitForm.types";
 import { testUnitFormSchema } from "../schemas/testUnitForm.schema";
 
-const defaultValue: TTestUnitForm = {
+const defaultValue: TestUnitForm = {
   name: "",
 };
 
 interface useTestUnitFormProps {
-  initialValue?: TTestUnitForm;
+  initialValue?: TestUnitForm;
 }
 
 const useTestUnitForm = ({ initialValue }: useTestUnitFormProps = {}) => {
-  const methods = useForm<TTestUnitForm>({
+  const methods = useForm<TestUnitForm>({
     defaultValues: initialValue || defaultValue,
     resolver: zodResolver(testUnitFormSchema),
   });

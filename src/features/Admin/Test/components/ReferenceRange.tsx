@@ -73,6 +73,7 @@ const ReferenceRange: FC<ReferenceRangeProps> = ({ index }) => {
 
       <div className="flex-1 flex gap-2 items-center ">
         <NumberInput
+          step={"any"}
           label="Nomral Minimum"
           {...register(`referenceRanges.${index}.normal_min`, {
             valueAsNumber: true,

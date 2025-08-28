@@ -1,8 +1,6 @@
 import { Button } from "@/components/ui/button";
-import TestUnitForm from "@/features/Admin/TestUnit/components/TestUnitForm";
 import { useCreateTestUnit } from "@/features/Admin/TestUnit/hooks/mutations/useCreateTestUnit";
 import useTestUnitForm from "@/features/Admin/TestUnit/hooks/useTestUnitForm";
-import type { TTestUnitForm } from "@/features/Admin/TestUnit/types/testUnitForm.types";
 import { FormProvider, type SubmitHandler } from "react-hook-form";
 import toast from "react-hot-toast";
 import {
@@ -11,6 +9,8 @@ import {
   DialogDescription,
   DialogTitle,
 } from "@/components/ui/dialog";
+import type { TestUnitForm as TTestUnitForm } from "../types/testUnitForm.types";
+import TestUnitForm from "./TestUnitForm";
 
 const CreateTestUnitModal = ({ onSuccess }: { onSuccess: () => void }) => {
   const methods = useTestUnitForm();

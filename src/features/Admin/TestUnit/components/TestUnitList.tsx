@@ -9,10 +9,10 @@ import {
 import { useState } from "react";
 import Modal from "@/components/Modal";
 import { SquarePen, Trash } from "lucide-react";
-import type { TTestUnit } from "../types/testUnit.types";
+import type { TestUnit } from "../types/testUnit.types";
 import useTestUnit from "../hooks/queries/useTestUnit";
-import EditTestUnitModal from "./EditTestUnitModal";
 import DeleteTestUnitModal from "./DeleteTestUnitModal";
+import EdiTestUnitModal from "./EditTestUnitModal";
 
 const TestUnitList = () => {
   const { data } = useTestUnit();
@@ -21,15 +21,16 @@ const TestUnitList = () => {
     "Update" | "Delete" | null
   >(null);
 
-  const [selectedDepartment, setSelectedDepartment] =
-    useState<TTestUnit | null>(null);
+  const [selectedDepartment, setSelectedDepartment] = useState<TestUnit | null>(
+    null
+  );
 
-  const handleOnEditClick = (department: TTestUnit) => {
+  const handleOnEditClick = (department: TestUnit) => {
     setSelectedAction("Update");
     setSelectedDepartment(department);
     setIsOpen(true);
   };
-  const handleOnDeleteClick = (department: TTestUnit) => {
+  const handleOnDeleteClick = (department: TestUnit) => {
     setSelectedAction("Delete");
     setSelectedDepartment(department);
     setIsOpen(true);
@@ -39,7 +40,7 @@ const TestUnitList = () => {
       <Modal open={isOpen} setOpen={setIsOpen}>
         {selectedDepartment &&
           (selectedAction === "Update" ? (
-            <EditTestUnitModal
+            <EdiTestUnitModal
               data={selectedDepartment}
               onSuccess={() => setIsOpen(false)}
             />

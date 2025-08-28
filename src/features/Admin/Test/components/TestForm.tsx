@@ -9,6 +9,7 @@ import ContainerSelect from "./ContainerSelect";
 import { Button } from "@/components/ui/button";
 import ReferenceRange from "./ReferenceRange";
 import ResultValueSelect from "./ResultValueSelect";
+import CategoricalOptions from "./CategoricalOptions";
 
 const TestForm = () => {
   const {
@@ -37,8 +38,8 @@ const TestForm = () => {
       <NumberInput
         label="Price"
         {...register("price", { valueAsNumber: true })}
+        error={errors.price?.message}
       />
-      <p>{errors.price?.message}</p>
 
       <div className="flex gap-2 items-center ">
         <UnitSelect className="flex-1" />
@@ -46,6 +47,7 @@ const TestForm = () => {
       </div>
 
       <ResultValueSelect />
+      <CategoricalOptions />
 
       <div className="flex flex-col gap-2">
         <h3 className="text-lg font-semibold">Specimen Requirement</h3>

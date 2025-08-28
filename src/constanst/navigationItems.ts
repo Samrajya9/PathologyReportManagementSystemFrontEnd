@@ -97,10 +97,10 @@ export const paths = {
       index: "/admin/specimens",
       create: "/admin/specimens/create",
     },
-    resultValueTypes: {
-      index: "/admin/resultValueTypes",
-      create: "/admin/resultValueTypes/create",
-    },
+    // resultValueTypes: {
+    //   index: "/admin/resultValueTypes",
+    //   create: "/admin/resultValueTypes/create",
+    // },
     test: {
       index: "/admin/test",
     },
@@ -140,11 +140,11 @@ export const menuItems: MenuItem[] = [
     label: "Specimens",
     url: paths.admin.specimens.index,
   },
-  {
-    icon: CreditCard,
-    label: "ResultValueType",
-    url: paths.admin.resultValueTypes.index,
-  },
+  // {
+  //   icon: CreditCard,
+  //   label: "ResultValueType",
+  //   url: paths.admin.resultValueTypes.index,
+  // },
   {
     icon: CreditCard,
     label: "Test",

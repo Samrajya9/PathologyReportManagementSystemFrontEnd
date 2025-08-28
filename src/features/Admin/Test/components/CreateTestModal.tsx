@@ -10,16 +10,24 @@ import { FormProvider, type SubmitHandler } from "react-hook-form";
 import type { testForm } from "../types/testForm.type";
 import toast from "react-hot-toast";
 import { Button } from "@/components/ui/button";
+import useCreateTest from "../hooks/mutations/useCreateTest";
 
-const CreateTestModal = ({}: { onSuccess: () => void }) => {
+const CreateTestModal = ({ onSuccess }: { onSuccess: () => void }) => {
   const methods = useTestForm();
+
+  const { mutateAsync, isPending } = useCreateTest();
 
   const onSubmit: SubmitHandler<testForm> = async (data) => {
     try {
-      console.log(data);
+      if (data.resultValueType !== "Categorical") {
+        delete data.resultValueOptions;
+      }
+      await mutateAsync(data);
+      onSuccess();
+      methods.reset();
     } catch (error) {
-      console.error("Error creating container:", error);
-      toast.error("Failed to create container");
+      console.error("Error creating Test:", error);
+      toast.error("Failed to create Test");
     }
   };
   return (
@@ -34,8 +42,8 @@ const CreateTestModal = ({}: { onSuccess: () => void }) => {
           className="flex flex-col gap-4 "
         >
           <TestForm />
-          <Button type="submit">
-            {methods.formState.isSubmitting ? "Creating..." : "Create"}
+          <Button type="submit" disabled={isPending}>
+            {isPending ? "Creating..." : "Create"}
           </Button>
         </form>
       </FormProvider>

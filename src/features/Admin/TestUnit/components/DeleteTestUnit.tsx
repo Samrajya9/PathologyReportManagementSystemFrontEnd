@@ -1,10 +1,10 @@
 import { Button } from "@/components/ui/button";
-import type { TTestUnit } from "../types/testUnit.types";
+import type { TestUnit } from "../types/testUnit.types";
 import toast from "react-hot-toast";
 import useDeleteTestUnit from "../hooks/mutations/useDeleteTestUnit";
 
 interface DeleteTestUnitProps {
-  data: TTestUnit;
+  data: TestUnit;
   onSuccess: () => void;
 }
 const DeleteTestUnit = ({ data, onSuccess }: DeleteTestUnitProps) => {

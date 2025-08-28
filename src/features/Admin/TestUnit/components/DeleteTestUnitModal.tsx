@@ -1,4 +1,4 @@
-import type { TTestUnit } from "../types/testUnit.types";
+import type { TestUnit } from "../types/testUnit.types";
 import {
   DialogHeader,
   DialogContent,
@@ -8,7 +8,7 @@ import {
 import DeleteTestUnit from "./DeleteTestUnit";
 
 interface Props {
-  data: TTestUnit;
+  data: TestUnit;
   onSuccess: () => void;
 }
 const DeleteTestUnitModal = ({ data, onSuccess }: Props) => {

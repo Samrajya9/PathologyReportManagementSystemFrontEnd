@@ -1,8 +1,8 @@
 import { useFormContext } from "react-hook-form";
-import type { TTestUnitForm } from "../types/testUnitForm.types";
+import type { TestUnitForm } from "../types/testUnitForm.types";
 
 const useTestUnitFormContext = () => {
-  return useFormContext<TTestUnitForm>();
+  return useFormContext<TestUnitForm>();
 };
 
 export default useTestUnitFormContext;
