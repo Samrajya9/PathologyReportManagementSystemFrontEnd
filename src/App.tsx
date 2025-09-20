@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import { routes } from "./routes";
 import toast, { Toaster } from "react-hot-toast";
 import { Suspense } from "react";
+import { AuthProvider } from "./context/AuthContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,20 +24,22 @@ const router = createBrowserRouter([...routes]);
 function App() {
   return (
     <>
-      <QueryClientProvider client={queryClient}>
-        <Toaster
-          position="top-right"
-          reverseOrder={false}
-          gutter={8}
-          toastOptions={{
-            duration: 3000,
-            removeDelay: 1000,
-          }}
-        />
-        <Suspense fallback={<div>Loading route...</div>}>
-          <RouterProvider router={router} />
-        </Suspense>
-      </QueryClientProvider>
+      <AuthProvider>
+        <QueryClientProvider client={queryClient}>
+          <Toaster
+            position="top-right"
+            reverseOrder={false}
+            gutter={8}
+            toastOptions={{
+              duration: 3000,
+              removeDelay: 1000,
+            }}
+          />
+          <Suspense fallback={<div>Loading route...</div>}>
+            <RouterProvider router={router} />
+          </Suspense>
+        </QueryClientProvider>
+      </AuthProvider>
     </>
   );
 }

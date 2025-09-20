@@ -7,7 +7,7 @@ import {
 import TestForm from "./TestForm";
 import { useTestForm } from "../hooks/useTestForm";
 import { FormProvider, type SubmitHandler } from "react-hook-form";
-import type { testForm } from "../types/testForm.type";
+import type { TtestForm } from "../types/testForm.type";
 import toast from "react-hot-toast";
 import { Button } from "@/components/ui/button";
 import useCreateTest from "../hooks/mutations/useCreateTest";
@@ -17,11 +17,8 @@ const CreateTestModal = ({ onSuccess }: { onSuccess: () => void }) => {
 
   const { mutateAsync, isPending } = useCreateTest();
 
-  const onSubmit: SubmitHandler<testForm> = async (data) => {
+  const onSubmit: SubmitHandler<TtestForm> = async (data) => {
     try {
-      if (data.resultValueType !== "Categorical") {
-        delete data.resultValueOptions;
-      }
       await mutateAsync(data);
       onSuccess();
       methods.reset();

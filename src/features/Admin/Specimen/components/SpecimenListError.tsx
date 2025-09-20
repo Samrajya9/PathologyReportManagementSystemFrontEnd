@@ -1,7 +1,16 @@
 import { Button } from "@/components/ui/button";
+import { useQueryClient } from "@tanstack/react-query";
 import { AlertCircle } from "lucide-react";
+import { specimenQueryKeys } from "../constants/specimen.queryKeys";
 
 const SpecimenListError = () => {
+  const queryClient = useQueryClient();
+  const handleRetry = () => {
+    console.log("first");
+    // Invalidate and refetch all specimen-related queries
+    queryClient.refetchQueries({ queryKey: specimenQueryKeys.all });
+  };
+
   return (
     <div className="flex flex-col items-center justify-center py-12 text-center">
       <AlertCircle className="h-12 w-12 text-red-500 mb-4" />
@@ -9,7 +18,7 @@ const SpecimenListError = () => {
       <p className="text-muted-foreground mb-4">
         There was an error loading the specimens list. Please try again.
       </p>
-      <Button onClick={() => window.location.reload()}>Retry</Button>
+      <Button onClick={handleRetry}>Retry</Button>
     </div>
   );
 };

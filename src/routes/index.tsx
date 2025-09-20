@@ -6,13 +6,14 @@ import Container from "@/pages/Admin/Container";
 import { paths } from "@/constanst/navigationItems";
 import TestUnit from "@/pages/Admin/TestUnit";
 import Specimens from "@/pages/Admin/Specimen";
-// import ResultValueTypes from "@/pages/Admin/ResultValueTypes";
 import NewAdminLayout from "@/components/layouts/NewAdminLayout";
+import Login from "@/pages/Auth/Login";
 
 const Department = lazy(() => import("@/pages/Admin/Department"));
 const Test = lazy(() => import("@/pages/Admin/Test"));
 
 export const routes: RouteObject[] = [
+  { path: "/login", element: <Login /> },
   {
     path: paths.admin.index,
     element: (

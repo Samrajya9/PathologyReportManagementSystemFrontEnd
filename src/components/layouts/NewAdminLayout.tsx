@@ -1,5 +1,5 @@
 import createCollapsibleBar from "../CollapsibleBar";
-import { Link, Outlet, useLocation } from "react-router";
+import { Link, Outlet, useLocation, useNavigate } from "react-router";
 import { cn } from "@/lib/utils";
 import {
   Bell,
@@ -16,6 +16,7 @@ import { ScrollArea } from "../ui/scroll-area";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Avatar, AvatarImage } from "../ui/avatar";
+import { useAuth } from "@/context/AuthContext";
 
 const LeftSidebar = createCollapsibleBar();
 const RightSidebar = createCollapsibleBar();
@@ -120,7 +121,125 @@ const LeftSiderBarHeader = () => {
   );
 };
 
+const Header = () => {
+  return (
+    <header className="flex justify-between py-5 px-7 border-b border-b-black/10">
+      <div className="flex items-center gap-2 [&>*:hover]:cursor-pointer">
+        <LeftSidebar.Trigger asChild>
+          <Button variant={"icon"} size={"sm"}>
+            <PanelsTopLeft size={16} />
+          </Button>
+        </LeftSidebar.Trigger>
+      </div>
+      <div className="flex items-center gap-5 [&>*:hover]:cursor-pointer">
+        <Input
+          className="rounded-full border-0 placeholder:text-gray-500 placeholder:font-mono font-mono"
+          placeholder="Search"
+        />
+        <ClockFading size={16} />
+        <Button variant={"icon"} size={"sm"}>
+          <Sun size={16} />
+        </Button>
+        <Bell size={16} />
+        <RightSidebar.Trigger asChild>
+          <Button variant={"icon"} size={"sm"}>
+            <PanelsTopLeft size={16} />
+          </Button>
+        </RightSidebar.Trigger>
+      </div>
+    </header>
+  );
+};
+
+const NotificationPanel = () => {
+  const content = [
+    {
+      Title: "You fixed a bug.",
+      Time: "Just now",
+    },
+    {
+      Title: "You fixed a bug.",
+      Time: "Just now",
+    },
+    {
+      Title: "You fixed a bug.",
+      Time: "Just now",
+    },
+  ];
+  return (
+    <div className="flex flex-col gap-5 py-2 flex-wrap ">
+      <h1>Notifications</h1>
+      <div className="flex flex-col gap-5 flex-wrap">
+        {content.map((ctx, index) => {
+          return (
+            <div key={index} className="flex gap-3 items-start justify-start ">
+              <div className=" rounded-xl bg-[#EDEEFC] p-2">
+                <Bug size={16} className="" />
+              </div>
+              <div className="flex-1">
+                <p>{ctx.Title}</p>
+                <p className="text-black/40">{ctx.Time}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+const ActivitiesPanel = () => {
+  const { isCollapsed } = RightSidebar.useCollapsibleBarContext();
+  const content = [
+    {
+      Title: "Changed the style",
+      Time: "Just now",
+      AvatrUrl: "https://github.com/shadcn.png",
+    },
+    {
+      Title: "Changed the style",
+      Time: "Just now",
+      AvatrUrl: "https://github.com/shadcn.png",
+    },
+    {
+      Title: "Changed the style",
+      Time: "Just now",
+      AvatrUrl: "https://github.com/shadcn.png",
+    },
+  ];
+  return (
+    <div className="flex flex-col gap-5 py-2 ">
+      <h1>Activities</h1>
+      <div className={`flex flex-col gap-5 items-start  `}>
+        {content.map((ctx, index) => {
+          return (
+            <div key={index} className="flex gap-3 items-start justify-start ">
+              <Avatar className="w-8 h-8">
+                <AvatarImage src={ctx.AvatrUrl} alt="@shadcn" />
+              </Avatar>
+              <div className="flex-1">
+                <p>{ctx.Title}</p>
+                <p className="text-black/40">{ctx.Time}</p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
 const NewAdminLayout = () => {
+  const { isLoggedIn } = useAuth();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      navigate("/login");
+    }
+  }, [isLoggedIn]);
+
   return (
     <LeftSidebar.Provider>
       <RightSidebar.Provider>
@@ -159,107 +278,3 @@ const NewAdminLayout = () => {
 };
 
 export default NewAdminLayout;
-
-const Header = () => {
-  return (
-    <header className="flex justify-between py-5 px-7 border-b border-b-black/10">
-      <div className="flex items-center gap-2 [&>*:hover]:cursor-pointer">
-        <LeftSidebar.Trigger asChild>
-          <Button variant={"icon"} size={"sm"}>
-            <PanelsTopLeft size={16} />
-          </Button>
-        </LeftSidebar.Trigger>
-      </div>
-      <div className="flex items-center gap-5 [&>*:hover]:cursor-pointer">
-        <Input
-          className="rounded-full border-0 placeholder:text-gray-500 placeholder:font-mono font-mono"
-          placeholder="Search"
-        />
-        <ClockFading size={16} />
-        <Button variant={"icon"} size={"sm"}>
-          <Sun size={16} />
-        </Button>
-        <Bell size={16} />
-        <RightSidebar.Trigger asChild>
-          <Button variant={"icon"} size={"sm"}>
-            <PanelsTopLeft size={16} />
-          </Button>
-        </RightSidebar.Trigger>
-      </div>
-    </header>
-  );
-};
-
-const NotificationPanel = () => {
-  return (
-    <div className="flex flex-col gap-5 py-2 ">
-      <h1>Notifications</h1>
-      <div className="flex flex-col gap-5">
-        <div className="flex gap-3 items-start justify-start ">
-          <div className=" rounded-xl bg-[#EDEEFC] p-2">
-            <Bug size={16} className="" />
-          </div>
-          <div className="flex-1">
-            <p>You fixed a bug.</p>
-            <p className="text-black/40">Just now</p>
-          </div>
-        </div>
-        <div className="flex gap-3 items-start justify-start ">
-          <div className=" rounded-xl bg-[#EDEEFC] p-2">
-            <Bug size={16} className="" />
-          </div>
-          <div className="flex-1">
-            <p>You fixed a bug.</p>
-            <p className="text-black/40">Just now</p>
-          </div>
-        </div>
-        <div className="flex gap-3 items-start justify-start ">
-          <div className=" rounded-xl bg-[#EDEEFC] p-2">
-            <Bug size={16} className="" />
-          </div>
-          <div className="flex-1">
-            <p>You fixed a bug.</p>
-            <p className="text-black/40">Just now</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const ActivitiesPanel = () => {
-  return (
-    <div className="flex flex-col gap-5 py-2 ">
-      <h1>Activities</h1>
-      <div className="flex flex-col gap-5 items-start">
-        <div className="flex gap-3 items-start justify-start ">
-          <Avatar className="w-8 h-8">
-            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-          </Avatar>
-          <div className="flex-1">
-            <p>Changed the style.</p>
-            <p className="text-black/40">Just now</p>
-          </div>
-        </div>
-        <div className="flex gap-3 items-start justify-start ">
-          <Avatar className="w-8 h-8">
-            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-          </Avatar>
-          <div className="flex-1">
-            <p>Changed the style.</p>
-            <p className="text-black/40">Just now</p>
-          </div>
-        </div>{" "}
-        <div className="flex gap-3 items-start justify-start ">
-          <Avatar className="w-8 h-8">
-            <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-          </Avatar>
-          <div className="flex-1">
-            <p>Changed the style.</p>
-            <p className="text-black/40">Just now</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};

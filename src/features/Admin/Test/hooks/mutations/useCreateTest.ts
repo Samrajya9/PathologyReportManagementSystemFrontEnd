@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { testQueryKeys } from "../../constants/test.queryKeys";
-import type { testForm } from "../../types/testForm.type";
+import type { TtestForm } from "../../types/testForm.type";
 import { testClient } from "../../api/TestClient";
 import type { TestResponse } from "../../types/test.types";
 
@@ -8,7 +8,7 @@ const useCreateTest = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: (data: testForm) => {
+    mutationFn: (data: TtestForm) => {
       const payload = {
         ...data,
         price: String(data.price),

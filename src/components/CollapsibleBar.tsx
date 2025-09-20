@@ -49,7 +49,7 @@ function createCollapsibleBar() {
     return (
       <aside
         className={cn(
-          "overflow-hidden transition-[width] duration-600 ease-in-out",
+          "overflow-hidden transition-[width]  duration-600 ease-in-out",
           className,
           isCollapsed ? collapsedWidth : UnCollapsedWidth
         )}
