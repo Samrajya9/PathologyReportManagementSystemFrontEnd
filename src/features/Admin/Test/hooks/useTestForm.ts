@@ -1,9 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { testFormSchema } from "../schemas/testForm.schema";
-import type { testForm } from "../types/testForm.type";
+import type { TtestForm } from "../types/testForm.type";
 
-const defaultValue: testForm = {
+const defaultValue: TtestForm = {
   name: "",
   price: 0,
   testUnitId: 0,
@@ -26,10 +26,10 @@ const defaultValue: testForm = {
 };
 
 interface useTestFormProps {
-  initialValue?: testForm;
+  initialValue?: TtestForm;
 }
 export const useTestForm = ({ initialValue }: useTestFormProps = {}) => {
-  return useForm<testForm>({
+  return useForm<TtestForm>({
     defaultValues: initialValue || defaultValue,
     resolver: zodResolver(testFormSchema),
   });

@@ -45,5 +45,7 @@ export type Test = {
 };
 
 export type TestResponse = Response & {
-  data: Test;
+  data: {
+    tests: Test[];
+  };
 };

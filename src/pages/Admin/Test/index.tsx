@@ -3,6 +3,7 @@ import Modal from "@/components/Modal";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import CreateTestModal from "@/features/Admin/Test/components/CreateTestModal";
+import TestTable from "@/features/Admin/Test/components/TestTable";
 import { Suspense, useState } from "react";
 
 const Test = () => {
@@ -24,7 +25,7 @@ const Test = () => {
         <CardContent>
           <ErrorBoundary fallback={<>Error</>}>
             <Suspense fallback={<>loading</>}>
-              {/* <ResultValueTypeList /> */}
+              <TestTable />
             </Suspense>
           </ErrorBoundary>
         </CardContent>
