@@ -18,6 +18,7 @@ import { Eye, SquarePen, Trash } from "lucide-react";
 import { useState } from "react";
 import type { Test } from "../types/test.types";
 import DeleteTestModal from "./DeleteTestModal";
+import EditTestModal from "./EditTestModal";
 
 const TestTable = () => {
   const { data } = useTest();
@@ -64,7 +65,7 @@ const TestTable = () => {
           </DialogHeader>
           {selectedTest &&
             (selectedAction === "Update" ? (
-              <EditSpecimen test={selectedTest} onSuccess={handleModalClose} />
+              <EditTestModal test={selectedTest} onSuccess={handleModalClose} />
             ) : (
               <DeleteTestModal
                 test={selectedTest}
@@ -114,13 +115,3 @@ const TestTable = () => {
 };
 
 export default TestTable;
-
-function EditSpecimen({
-  test,
-  onSuccess,
-}: {
-  test: Test;
-  onSuccess: () => void;
-}) {
-  return <div>Edit Specimen Component</div>;
-}
