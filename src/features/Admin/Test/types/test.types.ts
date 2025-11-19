@@ -4,8 +4,8 @@ import type { Department } from "../../Department/types";
 import type { TestUnit } from "../../TestUnit/types/testUnit.types";
 import type { ResultValueTypeEnum } from "../schemas/testForm.schema";
 import type { Specimen } from "../../Specimen/types/specimen.types";
-import type { Container } from "react-dom/client";
 import type { Response } from "@/types/Respose.types";
+import type { Container } from "../../Container/types/container.types";
 
 export type ResultValueTypeEnumType = z.infer<typeof ResultValueTypeEnum>;
 

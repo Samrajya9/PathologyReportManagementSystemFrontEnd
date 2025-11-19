@@ -8,6 +8,8 @@ import TestUnit from "@/pages/Admin/TestUnit";
 import Specimens from "@/pages/Admin/Specimen";
 import NewAdminLayout from "@/components/layouts/NewAdminLayout";
 import Login from "@/pages/Auth/Login";
+import UserLogin from "@/pages/Auth/UserLogin";
+import OrderPage from "@/pages/Admin/Orders/page";
 
 const Department = lazy(() => import("@/pages/Admin/Department"));
 const Test = lazy(() => import("@/pages/Admin/Test"));
@@ -44,6 +46,39 @@ export const routes: RouteObject[] = [
       {
         path: paths.admin.test.index,
         children: [{ index: true, element: <Test /> }],
+      },
+
+      {
+        path: "/admin/orders",
+        children: [
+          {
+            index: true,
+            element: (
+              <>
+                <OrderPage />
+              </>
+            ),
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    path: "user",
+    element: (
+      <Suspense fallback={<div>Loading </div>}>
+        <NewAdminLayout />
+      </Suspense>
+    ),
+    children: [
+      {
+        path: "login",
+        element: (
+          <>
+            <UserLogin />
+          </>
+        ),
       },
     ],
   },

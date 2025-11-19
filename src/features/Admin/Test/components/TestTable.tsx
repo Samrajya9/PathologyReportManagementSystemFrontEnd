@@ -7,16 +7,12 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import Modal from "@/components/Modal";
-import {
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
+
 import { useTest } from "../hooks/queries/useTests";
 import { Eye, SquarePen, Trash } from "lucide-react";
 import { useState } from "react";
 import type { Test } from "../types/test.types";
+import { ViewTestModal } from "./ViewTestModal";
 import DeleteTestModal from "./DeleteTestModal";
 import EditTestModal from "./EditTestModal";
 
@@ -50,29 +46,15 @@ const TestTable = () => {
   return (
     <>
       <Modal open={isModalOpen} setOpen={setIsModalOpen}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>
-              {selectedAction === "Update"
-                ? "Edit Specimen"
-                : "Delete Specimen"}
-            </DialogTitle>
-            <DialogDescription>
-              {selectedAction === "Update"
-                ? "Update the specimen information below."
-                : "This action cannot be undone."}
-            </DialogDescription>
-          </DialogHeader>
-          {selectedTest &&
-            (selectedAction === "Update" ? (
-              <EditTestModal test={selectedTest} onSuccess={handleModalClose} />
-            ) : (
-              <DeleteTestModal
-                test={selectedTest}
-                onSuccess={handleModalClose}
-              />
-            ))}
-        </DialogContent>
+        {selectedAction === "View" && selectedTest && (
+          <ViewTestModal test={selectedTest} />
+        )}
+        {selectedAction === "Delete" && selectedTest && (
+          <DeleteTestModal test={selectedTest} onSuccess={handleModalClose} />
+        )}
+        {selectedAction === "Update" && selectedTest && (
+          <EditTestModal test={selectedTest} onSuccess={handleModalClose} />
+        )}
       </Modal>
       <Table>
         <TableHeader>
@@ -91,7 +73,11 @@ const TestTable = () => {
               <TableCell>{test.price}</TableCell>
               <TableCell className="flex gap-2 items-center justify-end">
                 <Eye
-                  onClick={() => handleEditClick(test)}
+                  onClick={() => {
+                    setSelectedAction("View");
+                    setSelectedTest(test);
+                    setIsModalOpen(true);
+                  }}
                   size={16}
                   className="text-blue-600 hover:text-blue-800 cursor-pointer transition-colors"
                 />

@@ -1,4 +1,4 @@
-import { BarChart3, CreditCard } from "lucide-react";
+import { BarChart3, CreditCard, Printer } from "lucide-react";
 
 export function getActiveMenuLabel(
   url: string,
@@ -149,6 +149,12 @@ export const menuItems: MenuItem[] = [
     icon: CreditCard,
     label: "Test",
     url: paths.admin.test.index,
+  },
+
+  {
+    icon: Printer,
+    label: "Order",
+    url: "/admin/orders",
   },
   // TODO
   // If you start with just the module to create/update test master data, you’re basically building the “Lab Test Catalog” part of an LIS.
