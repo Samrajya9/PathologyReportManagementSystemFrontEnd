@@ -6,7 +6,9 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 const useDepartments = () => {
   return useSuspenseQuery({
     queryKey: departmentQueryKeys.all,
-    queryFn: () => departmentClient.get<DepartmentResponse>(),
+    queryFn: () => {
+      return departmentClient.get<DepartmentResponse>();
+    },
   });
 };
 

@@ -1,8 +1,12 @@
+/**
+ * TODO
+ * Need to remake this whole
+ */
 import ErrorBoundary from "@/components/ErrorBoundary";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import axiosInstance from "@/lib/axios";
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import {
   Table,
   TableBody,
@@ -14,20 +18,38 @@ import {
 import type { Response } from "@/types/Respose.types";
 import { Eye } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import Modal from "@/components/Modal";
+import TestRequestDashboard from "./components/Dashboard";
 
 const OrderPage = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <Card>
-      <CardHeader className="flex flex-row items-center justify-between ">
-        <h1>{"Orders Management".toLocaleUpperCase()}</h1>
-      </CardHeader>
-      <CardContent>
-        <ErrorBoundary fallback={<>Error</>}>
-          <Suspense fallback={<>loading</>}>{<OrderTable />}</Suspense>
-        </ErrorBoundary>
-      </CardContent>
-    </Card>
+    <>
+      <TestRequestDashboard />
+      {/* <Modal open={isOpen} setOpen={setIsOpen}>
+        <CreateTestRequestModal onSuccess={() => setIsOpen(false)} />
+      </Modal>
+
+      <Card>
+        <CardHeader className="flex flex-row items-center justify-between ">
+          <h1>{"Orders Management".toLocaleUpperCase()}</h1>
+          <Button
+            onClick={() => {
+              setIsOpen(true);
+            }}
+          >
+            Create test Request
+          </Button>
+        </CardHeader>
+        <CardContent>
+          <ErrorBoundary fallback={<>Error</>}>
+            <Suspense fallback={<>loading</>}>{<OrderTable />}</Suspense>
+          </ErrorBoundary>
+        </CardContent>
+      </Card> */}
+    </>
   );
 };
 

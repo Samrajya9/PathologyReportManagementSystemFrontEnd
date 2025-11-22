@@ -1,5 +1,26 @@
 import { CONFIG } from "@/constanst/config";
-import axios from "axios";
+import axios, { type AxiosInstance, type AxiosRequestConfig } from "axios";
+
+interface CustomAxiosInstance
+  extends Omit<AxiosInstance, "get" | "post" | "put" | "patch" | "delete"> {
+  get<T = any>(url: string, config?: AxiosRequestConfig): Promise<T>;
+  post<T = any>(
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig
+  ): Promise<T>;
+  put<T = any>(
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig
+  ): Promise<T>;
+  patch<T = any>(
+    url: string,
+    data?: any,
+    config?: AxiosRequestConfig
+  ): Promise<T>;
+  delete<T = any>(url: string, config?: AxiosRequestConfig): Promise<T>;
+}
 
 const axiosInstance = axios.create({
   baseURL: CONFIG.BASE_URL,
@@ -7,13 +28,17 @@ const axiosInstance = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
-});
+}) as CustomAxiosInstance;
 
 axiosInstance.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    console.log("Response in axiosInstance interceptors", response);
+    console.log("Sending just response.data");
+    return response.data;
+  },
   (error) => {
-    // handle global errors here (like logout on 401)
     return Promise.reject(error);
   }
 );
+
 export default axiosInstance;

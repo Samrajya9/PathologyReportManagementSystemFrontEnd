@@ -12,25 +12,26 @@ class HttpClient {
     return path ? `${this.baseUrl}/${path}` : this.baseUrl;
   }
 
-  async get<TResponse>(
-    path: string = "",
-    config?: AxiosRequestConfig
-  ): Promise<TResponse> {
-    const response = await axiosInstance.get(this.buildUrl(path), config);
-    return response.data;
+  async get<TResponse>(path: string = "", config?: AxiosRequestConfig) {
+    // axiosInstance already returns response.data, so response is TResponse
+    const response = await axiosInstance.get<TResponse>(
+      this.buildUrl(path),
+      config
+    );
+    return response;
   }
 
   async post<TResponse, TRequest>(
     path: string = "",
     data?: TRequest,
     config?: AxiosRequestConfig
-  ): Promise<TResponse> {
+  ) {
     const response = await axiosInstance.post<TResponse>(
       this.buildUrl(path),
       data,
       config
     );
-    return response.data;
+    return response;
   }
 
   async put<TResponse, TRequest = unknown>(
@@ -43,7 +44,7 @@ class HttpClient {
       data,
       config
     );
-    return response.data;
+    return response;
   }
 
   async patch<TResponse, TRequest = unknown>(
@@ -56,7 +57,7 @@ class HttpClient {
       data,
       config
     );
-    return response.data;
+    return response;
   }
 
   async delete<TResponse>(

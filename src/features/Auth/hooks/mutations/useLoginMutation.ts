@@ -5,7 +5,7 @@ import { authClient } from "../../api/auth.api";
 export const useLoginMutation = () => {
   return useMutation({
     mutationFn: async (data: AuthLoginInputs) => {
-      return await authClient.login(data);
+      return await authClient.adminLogin(data);
     },
   });
 };

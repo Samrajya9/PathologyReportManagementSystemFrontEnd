@@ -22,6 +22,14 @@ class AuthClient extends HttpClient {
     );
     return response;
   }
+
+  async adminLogin(data: AuthLoginInputs) {
+    const response = await this.post<LoginResponse, AuthLoginInputs>(
+      "login/admin",
+      data
+    );
+    return response;
+  }
 }
 
 export const authClient = new AuthClient();
