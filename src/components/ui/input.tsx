@@ -1,7 +1,6 @@
-import * as React from "react";
-
 import { cn } from "@/lib/utils";
-import { Label } from "@radix-ui/react-label";
+import * as React from "react";
+import { Label } from "./label";
 
 export interface InputProps extends React.ComponentPropsWithoutRef<"input"> {
   label?: string;
@@ -10,11 +9,19 @@ export interface InputProps extends React.ComponentPropsWithoutRef<"input"> {
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
   (props, forwardedRef) => {
-    const { className, label, type, id: customId, error, ...rest } = props;
+    const {
+      className,
+      label,
+      children,
+      type,
+      id: customId,
+      error,
+      ...rest
+    } = props;
     const generatedId = React.useId();
     const id = customId ?? generatedId;
     return (
-      <div className="w-full inline-flex flex-col gap-1.5">
+      <div className="w-full inline-flex flex-col gap-2">
         {label && <Label htmlFor={id}>{label}</Label>}
         <input
           id={id}
