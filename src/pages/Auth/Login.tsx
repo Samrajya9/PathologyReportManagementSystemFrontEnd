@@ -9,7 +9,7 @@ import { useLoginMutation } from "@/features/Auth/hooks/mutations/useLoginMutati
 import useLoginForm from "@/features/Auth/hooks/useLoginForm";
 import type { AuthLoginInputs } from "@/features/Auth/types/AuthLoginInputs.types";
 import { Eye, EyeOff, Lock, Mail, ArrowRight, Activity } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { type SubmitHandler } from "react-hook-form";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router";
@@ -27,7 +27,9 @@ const Login = () => {
 
   const { mutateAsync, isPending } = useLoginMutation();
 
-  const { setIsLoggedIn } = useAuth();
+  const { isLoggedIn, setIsLoggedIn } = useAuth();
+
+  if (isLoggedIn) navigate("/");
 
   const onSubmit: SubmitHandler<AuthLoginInputs> = (data) => {
     data.role = "admin";
@@ -40,8 +42,12 @@ const Login = () => {
     });
   };
 
+  useEffect(() => {
+    setFocus("email");
+  }, []);
+
   return (
-    <div className="min-h-screen  w-full  flex flex-col items-center justify-center px-8 sm:px-12 md:px-24 lg:px-32 relative z-10 border">
+    <div className="min-h-screen w-full flex flex-col items-center justify-center px-8 sm:px-12 md:px-24 lg:px-32 relative z-10 border">
       {/* Mobile-only background hint */}
       <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-gray-50 lg:hidden -z-10" />
 
@@ -201,33 +207,3 @@ const Login = () => {
 };
 
 export default Login;
-
-// <Card className="min-h-lvh grid place-items-center ">
-//     <CardContent>
-//       <form
-//         onSubmit={handleSubmit(onSubmit)}
-//         className="w-80 aspect-square flex flex-col gap-4 justify-center items-center p-5"
-//       >
-//         <Input
-//           {...register("email")}
-//           placeholder="Enter your email"
-//           error={errors.email ? errors.email.message : undefined}
-//         />
-
-//         <Input
-//           type="password"
-//           {...register("password")}
-//           placeholder="Enter your password"
-//           error={errors.password ? errors.password.message : undefined}
-//         />
-//         <Button
-//           disabled={isPending}
-//           type="submit"
-//           size={"lg"}
-//           variant="default"
-//         >
-//           Login
-//         </Button>
-//       </form>
-//     </CardContent>
-//   </Card>

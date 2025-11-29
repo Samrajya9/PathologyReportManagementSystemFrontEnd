@@ -12,8 +12,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     const clientIsLoggedIn = localStorage.getItem("logged_in");
-    if (!clientIsLoggedIn && clientIsLoggedIn !== "true") return false;
-    return true;
+    if (!clientIsLoggedIn) return false;
+    return clientIsLoggedIn === "true" ? true : false;
   });
 
   useEffect(() => {

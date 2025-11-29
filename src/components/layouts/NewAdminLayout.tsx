@@ -189,7 +189,8 @@ const NotificationPanel = () => {
 };
 
 const ActivitiesPanel = () => {
-  const { isCollapsed } = RightSidebar.useCollapsibleBarContext();
+  // const { isCollapsed: rightSideBarIsCollapsed } =
+  //   RightSidebar.useCollapsibleBarContext();
   const content = [
     {
       Title: "Changed the style",
@@ -257,7 +258,7 @@ const NewAdminLayout = () => {
           </LeftSidebar.Aside>
           <div className="flex-1 flex flex-col ">
             <Header />
-            <main className="flex-1 py-5 px-7">
+            <main className="flex-1 py-5 px-7 ">
               <Outlet />
             </main>
           </div>
